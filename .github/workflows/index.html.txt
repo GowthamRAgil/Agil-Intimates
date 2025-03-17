@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Restricted</title>
+    <script>
+        function checkAccess() {
+            let isMobile = navigator.userAgent.match(/Android|iPhone|iPad|iPod/i);
+            let referrer = document.referrer;
+
+            if (isMobile && referrer === "") { 
+                // Redirect only if accessed from a QR scan (no referrer)
+                window.location.href = "https://docs.google.com/forms/d/15Wats2TUQBFBsnpFA4Qzmk7S5nYmg--7Z0wMt_eNJ8A/preview";
+            } else {
+                document.getElementById("message").innerHTML = 
+                    "<h2>Access Restricted</h2><p>Please scan the QR code to access this form.</p>";
+            }
+        }
+    </script>
+</head>
+<body onload="checkAccess()">
+    <div id="message"></div>
+</body>
+</html>
